@@ -1,0 +1,116 @@
+Github URL: 
+Deployed URL:https://twenty-clubs-melt-34-148-188-177.loca.lt/
+
+
+Part 1 (Three Questions)
+
+Write a regex to extract all the numbers with orange color background from the below text in italics.
+
+
+{"orders":[{"id":1},{"id":2},{"id":3},{"id":4},{"id":5},{"id":6},{"id":7},{"id":8},{"id":9},{"id":10},{"id":11},{"id":648},{"id":649},{"id":650},{"id":651},{"id":652},{"id":653}],"errors":[{"code":3,"message":"[PHP Warning #2] count(): Parameter must be an array or an object that implements Countable (153)"}]}
+
+Soln: 
+
+import re
+c={"orders":[{"id":1},{"id":2},{"id":3},{"id":4},{"id":5},{"id":6},{"id":7},{"id":8},{"id":9},{"id":10},{"id":11},{"id":648},{"id":649},{"id":650},{"id":651},{"id":652},{"id":653}],"errors":[{"code":3,"message":"[PHP Warning #2] count(): Parameter must be an array or an object that implements Countable (153)"}]}
+m=[]
+for i in c.values():
+    for j in i:
+        for k in j.values():
+            if type(k)==int:
+                m.append(k)
+pattern='\d+'
+if(re.compile(pattern)):
+    print(m)
+
+Deployment: The above code was run using Pycharm.
+Explaination: The regex module is imported and c defines the orders that contain the id along with the numbers highlighted in orange.An empty array m is being defined, i defines the values in c.
+and j defines the id array, and k are the integer values in j, if the type of the number k is integer it gets appended into the array m.
+the regex pattern is '\d+' d is for all digits between [0-9] and + means more than once.
+then a regex function of recompile is used to extract the numbers according to the pattern, and the array m is printed.
+
+Output:
+C:\Users\HOME\PycharmProjects\pythonProject\venv\Scripts\python.exe C:/Users/HOME/PycharmProjects/pythonProject/regex.py 
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 648, 649, 650, 651, 652, 653, 3]
+
+Process finished with exit code 0
+
+Part 2 
+Here is the data set that contains the history of customer booking in a hotel.
+There are three sections in this part
+1. Train a machine learning model (preferably with a neural network) that 
+predicts the customer who is going to be checked in. Once done, please test 
+the prediction with below test data.
+2. Do a thorough analysis on the results and the dataset with visualizations (please feel free to add creative ways of visualization here).
+3. Host/Deploy the results using any hosting service you want (streamlit/flask)
+
+Soln: The Neural Network model is built using google colaboratory, the packages used are
+import numpy as np 
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import tensorflow as tf
+from tensorflow.keras import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.utils import plot_model
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import train_test_split
+The data-set used to train the model is "/content/train_data_evaluation_part_2.csv", the attributes containing string values are transformed into float values using the label encoder post which the standardization of the data is done
+The tensor flow model is deing imported and the modelis being built.
+The model is then being tested using the test dataset "/content/test_data_evaluation_part2.csv" aand the model is tested against the test data-set. 
+The histogram  visualization for age, nationality and ID is being deployed, the scatterplot visualization is the being plotted for the Distributionstable anf the MarketSegment.
+the corealation factor is shown with the confusion matrix and the heatmap .The predictor is being built and the accuracy of the model is checked and the visualizations(ANN techniques is performed) such as Plot_model, Ann_visualization and tensorflow model is being deployed.
+The deployment is one using streamlit which runs on the local host.The Results("CheckedIn" and "Ann Visualization") has been deployed in through the local host. 
+
+
+
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+More Bonus Points:
+
+1. Write about any difficult problem that you solved. (According to us difficult - is something which 90% of people would have only 10% probability in getting a similarly good solution).
+
+Solution: During the last read-through of my final year project I faced a tough situation which almost made it impossible for my project to run.
+I had built a real-time model using Raspberry pi 3 termed as the Night patrolling Robot using IOT. 
+The Project was successfully completed and a final run through was being done when the polyfuse of the Raspberry pi burned out due to voltage fluctuation, this happened exactly 18 hours before my final project evaluation.
+As the final year project holds much importance me and my team were devastated. At first we panicked about the situation but on continous research on the web we figured out that polyfuse was burned out due to power fluctuation and it would take about 48 hours for the Pi to reboot on its own.
+As I was responsible for the software part of the project I, took a chance of rebooting the entire system by erasing the content of th SD card from the pi and start the process all over again. I formatted the SD card and added the OS into it and flashed it. After I rebooted the entire system we had to start with the coding part of the project.
+There were different codes working simultaneously to achieve the objective of the Project.As the system had rebooted there was a change in the port numbers that were being occupied by some other module which resulted in an error and took alot of time. 
+In order to debug that particular error I changed the bluetooth module into another external module that had to be installed.
+After so many hours of effort our Raspberry Pi was ready to be implemented along with the other components such as the motor driver which had to connected to the GPIO pins of the PI as defined by in the code to which there were DC motors connected to make the wheels rotate accordingly.
+There were sound sensors, IR sensors and camera sensor which had to be installed on the chasis along which its respective modules being installed in the PI.
+After 9 hours of hard work our project was ready again and was presented to the evaluator on the scheduled day.
+
+2. Explain back propagation and tell us how you handle a dataset if 4 out of 30 parameters have null values more than 40 percentage.
+
+Solution: Backpropogation is an important concept of neural networks which works in classifying the best data.It is process which makes improvisations to the weights of the neural networks using the error rate obtained in each iteration which helps in increasing its generalization.
+When we build a model that performs the XOR function with two input units and three hidden units we would require an activation function that determines the value at every node along with the hypothesis and the loss function.
+Batch Gradient Descent optimization function is used to determine in what direction  should the weights get adjusted to get a lower loss than the one we currently have. So that the learning rate will be 0.1 and all the weights will be initialized to 1.
+The leftmost layer will be the input layer, which takes X0 as the bias term of value 1, and X1 and X2 as input features. The layer in the middle will be the first hidden layer, which also takes a bias term Z0 of value 1. Finally, the output layer has only one output unit D0 whose activation value is the actual output of the model (i.e. h(x)).
+There are two tpes of backpropogation in neural networks 
+Static Back Propagation Neural Network: in this case the static output is generated due to the mapping of the static input.
+Recurrent Backpropagation Neural Network: it is directed forwardly in this type until a threshold value is reached.
+Advantages:
+Efficient
+Standardized method
+Flexible
+Faster
+Disadvantages:
+Very sensitive to noisy data
+
+When a dataset contains 40 percent of null values we can use any of the below methods:
+1. Delete the particular rows: this method deletes the row that has null values and can be used only if the dataset is sufficient.
+2. Replacing the null values with mean,median or mode: the nulls values can be replaced using the statistical methods to process the data.
+3. Predicting the missing values: this can be done using linear rgression to fill in the null values.
+4. Using unique values: the null values can be replaced by simply using a unique characyer
+5. Using algorithms that support missing values: KNN is an amazing algorithm which helps in finding the missing values.
+6. Drop dataframe columns based on NaN percentage: dataframe.dropna()function can be used to calculate n replace the missing values from the dataset.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+
+
+
+     
